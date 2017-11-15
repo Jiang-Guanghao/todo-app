@@ -1,31 +1,29 @@
 <template>
   <div id="app">
-    <!-- <img src="./assets/logo.png"> -->
-    <!-- <HelloWorld/> -->
     <create-todo v-on:add-todo="addTodo"></create-todo>
     <todo-list v-bind:todos="todos"></todo-list>
   </div>
 </template>
 
 <script>
-  // import HelloWorld from './components/HelloWorld';
+  import sweetalert from 'sweetalert';
   import TodoList from './components/TodoList';
   import CreateTodo from './components/CreateTodo';
 
   export default {
     name: 'app',
     components: {
-      // HelloWorld,
       TodoList,
-      CreateTodo
+      CreateTodo,
     },
     methods: {
-      addTodo(title) {
+      addTodo(newTodo) {
         this.todos.push({
-          title,
-          project,
-          done: false,
+          title: newTodo.title,
+          project: newTodo.project,
+          done: newTodo.done,
         });
+        sweetalert('Success!', 'To-Do created!', 'success');
       },
     },
     data() {
@@ -48,7 +46,7 @@
           done: false,
         }],
       };
-    }
+    },
   };
 </script>
 

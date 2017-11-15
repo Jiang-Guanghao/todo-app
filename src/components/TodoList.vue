@@ -4,28 +4,41 @@
     <p>Pending Tasks: {{todos.filter(todo => {return todo.done === false}).length}}</p>
     <todo v-for="todo in todos" v-bind:todo="todo" :key="todo.title" v-on:delete-todo="deleteTodo" v-on:complete-todo="completeTodo"></todo>
     </div>
-    <!-- <ul>
-      <li> Todo A </li> 
-      <li> Todo B </li> 
-      <li> Todo C </li> 
-    </ul>  -->
   </div>
 </template>
 
 <script type = "text/javascript" >
-  import TodoList from './components/Todo';
+  import sweetalert from 'sweetalert';
+  import Todo from './Todo';
+
   export default {
     props: ['todos'],
+    components: {
+      Todo,
+    },
     methods: {
       deleteTodo(todo) {
-        const todoIndex = this.todos.indexOf(todo);
-        this.todos.splice(todoIndex, 1);
+        sweetalert({
+          title: 'Are you sure?',
+          text: 'This To-Do will be permanently deleted!',
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#DD6B55',
+          confirmButtonText: 'Yes, delete it!',
+          closeOnConfirm: false,
+        },
+        () => {
+          const todoIndex = this.todos.indexOf(todo);
+          this.todos.splice(todoIndex, 1);
+          sweetalert('Deleted!', 'Your To-Do has been deleted.', 'success');
+        });
       },
       completeTodo(todo) {
         const todoIndex = this.todos.indexOf(todo);
         this.todos[todoIndex].done = true;
+        sweetalert('Success!', 'To-Do completed!', 'success');
       },
-    }
+    },
   };
 </script>
 <style>

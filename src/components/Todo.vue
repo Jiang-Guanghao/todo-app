@@ -45,28 +45,28 @@
     </div>
 </template>
 <script>
-export default {
-  props: ["todo"],
-  data() {
-    return {
-      isEditing: false
-    };
-  },
-  methods: {
-    showForm() {
-      this.isEditing = true;
+  export default {
+    props: ['todo'],
+    data() {
+      return {
+        isEditing: false,
+      };
     },
-    hideForm() {
-      this.isEditing = false;
+    methods: {
+      showForm() {
+        this.isEditing = true;
+      },
+      hideForm() {
+        this.isEditing = false;
+      },
+      deleteTodo(todo) {
+        this.$emit('delete-todo', todo);
+      },
+      completeTodo(todo) {
+        this.$emit('complete-todo', todo);
+      },
     },
-    deleteTodo(todo) {
-      this.$emit('delete-todo', todo);
-    },
-    completeTodo(todo) {
-      this.$emit('complete-todo', todo);
-    },
-  }
-};
+  };
 </script>
 <style scoped>
 
