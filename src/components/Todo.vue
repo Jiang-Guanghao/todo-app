@@ -8,8 +8,11 @@
           {{ todo.project }}
         </div>
         <div class='extra content'>
-          <span class='right floated edit icon'>
+          <span class='right floated edit icon' v-on:click="showForm">
             <i class='edit icon'></i>
+          </span>
+          <span class='right floated trash icon' v-on:click="deleteTodo(todo)">
+            <i class='trash icon'></i>
           </span>
         </div>
       </div>
@@ -30,12 +33,6 @@
           </div>
         </div>
       </div>
-      <span class='right floated edit icon' v-on:click="showForm">
-        <i class='edit icon'></i>
-      </span>
-      <span class='right floated trash icon' v-on:click="deleteTodo(todo)">
-        <i class='trash icon'></i>
-      </span>
       <div class='ui bottom attached green basic button' v-show="!isEditing && todo.done" disabled>
         Completed
       </div>

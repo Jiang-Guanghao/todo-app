@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import sweetalert from 'sweetalert';
+  import swal from 'sweetalert';
   import TodoList from './components/TodoList';
   import CreateTodo from './components/CreateTodo';
 
@@ -23,7 +23,7 @@
           project: newTodo.project,
           done: newTodo.done,
         });
-        sweetalert('Success!', 'To-Do created!', 'success');
+        swal('Success!', 'To-Do created!', 'success');
       },
     },
     data() {
